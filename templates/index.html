@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load require %}
+
+{% block content %}
+    <h1>Example django-require</h1>
+    <div>
+        <textarea id="text-editor"></textarea>
+    </div>
+{% endblock %}
+
+
+{% block extra_body %}
+    {% require_module 'config' %}
+{% endblock %}
