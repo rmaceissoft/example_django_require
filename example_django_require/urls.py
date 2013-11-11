@@ -6,14 +6,21 @@ from django.conf import settings
 # from django.contrib import admin
 # admin.autodiscover()
 
-urlpatterns = patterns('',
-    # media and static
-    (r'^media/(?P<path>.*)$','django.views.static.serve',
-         {'document_root': settings.MEDIA_ROOT,'show_indexes': True}),
-    (r'^static/(?P<path>.*)$','django.views.static.serve',
-         {'document_root': settings.STATIC_ROOT,'show_indexes': True}),                       
+urlpatterns = patterns(
+    '',
+    # main page
     url(r'^$', TemplateView.as_view(template_name='index.html'), name='index'),
 
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
 )
+
+if not settings.DEBUG:
+    urlpatterns += patterns(
+        '',
+        # media and static
+        (r'^media/(?P<path>.*)$','django.views.static.serve',
+             {'document_root': settings.MEDIA_ROOT,'show_indexes': True}),
+        (r'^static/(?P<path>.*)$','django.views.static.serve',
+             {'document_root': settings.STATIC_ROOT,'show_indexes': True}),
+    )
