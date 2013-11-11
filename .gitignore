@@ -1,3 +1,4 @@
+*.pyc
 .idea/
 public/*
 local_settings.py
